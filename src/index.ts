@@ -1,5 +1,5 @@
 /**
- * \@spencerbeggs/example-module
+ * \@savvy-web/example-module
  *
  * Version-aware type definition registry for TypeScript documentation with Twoslash.
  * Built with Effect for robust error handling and composable async operations.

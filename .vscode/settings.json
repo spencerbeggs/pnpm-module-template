@@ -44,7 +44,7 @@
 		"**/.vitest": true,
 		"**/*.tsbuildinfo": true,
 		"**/dist": false,
-		"**/node_modules": true
+		"**/node_modules": false
 	},
 	"gitlens.statusBar.pullRequests.enabled": true,
 	"typescript.experimental.useTsgo": true,
@@ -79,7 +79,8 @@
 		"**/*.tsbuildinfo": true,
 		"**/dist": true,
 		"**/node_modules": true,
-		"website/docs/en/claude-binary-plugin/api": true,
+		"**/.claude/plans": true,
+		"**/.claude/design": true,
 		"pnpm-lock.yaml": true
 	},
 	"formattingToggle.affects": [
@@ -111,5 +112,6 @@
 		"editor.formatOnSave": true,
 		"editor.formatOnPaste": true
 	},
-	"markdown.styles": [".vscode/static/github-markdown.css"]
+	"markdown.styles": [".vscode/static/github-markdown.css"],
+	"vitest.disableWorkspaceWarning": true
 }

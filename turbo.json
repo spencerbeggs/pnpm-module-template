@@ -8,14 +8,16 @@
 			"inputs": [
 				"$TURBO_DEFAULT$",
 				"$TURBO_ROOT$/package.json",
-				"$TURBO_ROOT$/pnpm-lock.yml",
-				"$TURBO_ROOT$/pnpm-workspace.yml",
-				"package.json",
-				"rslib.config.ts",
-				"tsconfig.json",
-				"src/**/*.ts",
-				"README.md",
-				"LICENSE"
+				"$TURBO_ROOT$/pnpm-lock.yaml",
+				"$TURBO_ROOT$/pnpm-workspace.yaml",
+				"!**/*.test.ts",
+				"!**/*.spec.ts",
+				"!**/*.md",
+				"!.changeset/**",
+				"!.claude/**",
+				"!.github/**",
+				"!.husky/**",
+				"!.vscode/**"
 			],
 			"outputLogs": "full",
 			"outputs": ["dist/dev/**", ".rslib/declarations/dev/**"]
@@ -26,14 +28,16 @@
 			"inputs": [
 				"$TURBO_DEFAULT$",
 				"$TURBO_ROOT$/package.json",
-				"$TURBO_ROOT$/pnpm-lock.yml",
-				"$TURBO_ROOT$/pnpm-workspace.yml",
-				"package.json",
-				"rslib.config.ts",
-				"tsconfig.json",
-				"src/**/*.ts",
-				"README.md",
-				"LICENSE"
+				"$TURBO_ROOT$/pnpm-lock.yaml",
+				"$TURBO_ROOT$/pnpm-workspace.yaml",
+				"!**/*.test.ts",
+				"!**/*.spec.ts",
+				"!**/*.md",
+				"!.changeset/**",
+				"!.claude/**",
+				"!.github/**",
+				"!.husky/**",
+				"!.vscode/**"
 			],
 			"outputLogs": "full",
 			"outputs": ["dist/npm/**", ".rslib/declarations/npm/**"]
@@ -41,7 +45,15 @@
 		"types:check": {
 			"cache": true,
 			"dependsOn": [],
-			"inputs": ["*.ts", "lib/**/*.ts", "lib/**/*.mts"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"!**/*.md",
+				"!.changeset/**",
+				"!.claude/**",
+				"!.github/**",
+				"!.husky/**",
+				"!.vscode/**"
+			],
 			"outputLogs": "errors-only",
 			"outputs": []
 		}
