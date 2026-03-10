@@ -44,14 +44,14 @@
 		"@savvy-web/changesets": "^0.4.2",
 		"@savvy-web/commitlint": "^0.4.0",
 		"@savvy-web/lint-staged": "^0.5.1",
-		"@savvy-web/rslib-builder": "^0.16.0",
+		"@savvy-web/rslib-builder": "^0.17.0",
 		"@savvy-web/vitest": "^0.2.0"
 	},
-	"packageManager": "pnpm@10.30.1+sha512.3590e550d5384caa39bd5c7c739f72270234b2f6059e13018f975c313b1eb9fefcc09714048765d4d9efe961382c312e624572c0420762bdc5d5940cdf9be73a",
+	"packageManager": "pnpm@10.32.0+sha512.9b2634bb3fed5601c33633f2d92593f506270a3963b8c51d2b2d6a828da615ce4e9deebef9614ccebbc13ac8d3c0f9c9ccceb583c69c8578436fa477dbb20d70",
 	"devEngines": {
 		"packageManager": {
 			"name": "pnpm",
-			"version": "10.30.1",
+			"version": "10.32.0",
 			"onFail": "ignore"
 		},
 		"runtime": [
