@@ -4,9 +4,12 @@
 	"private": true,
 	"description": "A template repository for developing and deploying Node.js modules from a pnpm monorepo structure.",
 	"homepage": "https://github.com/spencerbeggs/pnpm-module-template#readme",
+	"bugs": {
+		"url": "https://github.com/spencerbeggs/pnpm-module-template/issues"
+	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/spencerbeggs/pnpm-module-template.git"
+		"url": "git+https://github.com/spencerbeggs/pnpm-module-template.git"
 	},
 	"license": "MIT",
 	"author": {

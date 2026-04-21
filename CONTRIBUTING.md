@@ -1,139 +1,65 @@
-# Contributing to Claude Design Coordinator
+# Contributing
 
-Thank you for your interest in contributing to Claude Design Coordinator! This
-document provides guidelines and instructions for development.
+> **Template placeholder** — Replace this file with contribution guidelines
+> specific to your project when you clone this template.
 
-## Prerequisites
+## Writing a Good CONTRIBUTING.md
 
-- Node.js 20+
-- pnpm 10+
+A CONTRIBUTING.md file sets expectations for contributors and reduces friction
+in the review process. Below are best practices for writing one.
 
-## Development Setup
+### What to Include
 
-```bash
-# Clone the repository
-git clone https://github.com/spencerbeggs/claude-design-coordinator.git
-cd claude-design-coordinator
+**Prerequisites and setup** — List required tools (Node.js version, package
+manager, etc.) and the steps to get a working development environment. Keep it
+copy-pasteable:
 
-# Install dependencies
+```text
+git clone <repo-url>
+cd <project>
 pnpm install
-
-# Build all packages
 pnpm run build
-
-# Run tests
 pnpm run test
 ```
 
-## Running Locally
+**Project structure** — A brief overview of the directory layout so
+contributors know where to find things. A simple tree diagram works well.
 
-```bash
-# Start the server (from built output)
-node pkgs/claude-coordinator-server/dist/dev/bin/cli.js
+**Development workflow** — Explain how to run the project locally, run tests,
+lint, and type-check. List the key scripts from `package.json` in a table.
 
-# In another terminal, test the MCP bridge
-node pkgs/claude-coordinator-mcp/dist/dev/bin/cli.js
-```
+**Branching and commit conventions** — Describe your branch naming scheme and
+commit message format. If you use conventional commits, link to the spec and
+show an example. If DCO signoff is required, explain how to add it.
 
-## Project Structure
+**How to submit changes** — Walk through the fork-branch-PR workflow step by
+step. Mention any CI checks that must pass before review.
 
-```text
-claude-design-coordinator/
-├── pkgs/
-│   ├── claude-coordinator-core/    # Zod schemas and TypeScript types
-│   ├── claude-coordinator-server/  # tRPC WebSocket server
-│   └── claude-coordinator-mcp/     # MCP stdio bridge
-├── lib/
-│   └── configs/                    # Shared configuration files
-└── ...
-```
+**Code style** — Point to your linter/formatter config rather than restating
+rules. If there are conventions the tooling does not enforce (naming, file
+organization, import ordering), document those here.
 
-## Available Scripts
+**Testing expectations** — State whether new code needs tests, what coverage
+threshold applies, and how to run the test suite. Mention any special test
+categories (unit, integration, e2e) and their naming conventions.
 
-| Script | Description |
-| ------ | ----------- |
-| `pnpm run build` | Build all packages (dev + prod) |
-| `pnpm run test` | Run all tests |
-| `pnpm run lint` | Check code with Biome |
-| `pnpm run lint:fix` | Auto-fix lint issues |
-| `pnpm run typecheck` | Type-check all workspaces |
+**Issue and PR etiquette** — Explain how to file a good bug report, how to
+propose a feature, and what reviewers look for in a PR. Link to issue templates
+if you have them.
 
-## Code Quality
+**Changesets** — If you use changesets for versioning, explain when a changeset
+is needed and how to create one.
 
-This project uses:
+**License** — State the project license and clarify that contributions are
+made under the same terms.
 
-- **Biome** for linting and formatting
-- **Commitlint** for enforcing conventional commits
-- **Husky** for Git hooks
+### Tips
 
-### Commit Format
-
-All commits must follow the [Conventional Commits](https://conventionalcommits.org)
-specification and include a DCO signoff:
-
-```text
-feat: add new coordinator tool
-
-Signed-off-by: Your Name <your.email@example.com>
-```
-
-### Pre-commit Hooks
-
-The following checks run automatically:
-
-- **pre-commit**: Runs lint-staged
-- **commit-msg**: Validates commit message format
-- **pre-push**: Runs tests for affected packages
-
-## Testing
-
-Tests use [Vitest](https://vitest.dev) with v8 coverage.
-
-```bash
-# Run all tests
-pnpm run test
-
-# Run tests in watch mode
-pnpm run test:watch
-
-# Run tests with coverage
-pnpm run test:coverage
-
-# Run tests for a specific package
-pnpm run test -- --filter=@spencerbeggs/claude-coordinator-core
-```
-
-## TypeScript
-
-- Composite builds with project references
-- Strict mode enabled
-- ES2022/ES2023 targets
-- Import extensions required (`.js` for ESM)
-
-### Import Conventions
-
-```typescript
-// Use .js extensions for relative imports (ESM requirement)
-import { AgentSchema } from "./schemas/agent.js";
-
-// Use node: protocol for Node.js built-ins
-import { EventEmitter } from "node:events";
-
-// Separate type imports
-import type { Agent } from "./schemas/agent.js";
-```
-
-## Submitting Changes
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/my-feature`
-3. Make your changes
-4. Run tests: `pnpm run test`
-5. Run linting: `pnpm run lint:fix`
-6. Commit with conventional format and DCO signoff
-7. Push and open a pull request
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the
-MIT License.
+- Keep it concise. A wall of text discourages reading.
+- Use headings and lists so contributors can scan for what they need.
+- Link to external docs (conventional commits spec, DCO explanation) rather
+  than reproducing them inline.
+- Update CONTRIBUTING.md when workflows change. Stale docs are worse than no
+  docs.
+- Consider adding a "First-time contributors" section pointing to good starter
+  issues.

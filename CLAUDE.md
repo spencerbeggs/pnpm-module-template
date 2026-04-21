@@ -177,3 +177,14 @@ workflow. The GitHub Action is at
 - **Config**: `vitest.config.ts` uses the `VitestConfig.create()` factory from
   `@savvy-web/vitest`, which supports project-based filtering via `--project`
 - **CI**: `pnpm run ci:test` sets `CI=true` and enables coverage
+
+### Test Directory
+
+All tests live in `__test__/`, never co-located in `src/`. See
+`__test__/CLAUDE.md` for the full directory structure and rules.
+
+- Unit tests: `__test__/*.test.ts`
+- E2e tests: `__test__/e2e/*.e2e.test.ts`
+- Integration tests: `__test__/integration/*.int.test.ts`
+- Shared mocks and helpers go in the `utils/` subdirectory for each category
+- Static test data goes in the `fixtures/` subdirectory for each category
