@@ -67,8 +67,7 @@
 		"directory": "dist/dev/pkg",
 		"linkDirectory": true,
 		"targets": {
-			"npm": true,
-			"github": true
+			"npm": true
 		}
 	}
 }
