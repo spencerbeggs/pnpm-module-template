@@ -22,10 +22,9 @@
 		".": "./src/index.ts"
 	},
 	"scripts": {
-		"build": "turbo run build:dev build:prod --log-order=grouped --log-prefix=none",
-		"build:dev": "node savvy.build.ts --target dev",
-		"build:prod": "node savvy.build.ts --target prod",
-		"ci:build": "CI=\"true\" turbo run build:dev build:prod --log-order=grouped --output-logs=full --log-prefix=none",
+		"build": "turbo run build:prod --log-order=grouped --log-prefix=none",
+		"build:prod": "effected package build",
+		"ci:build": "CI=\"true\" turbo run build:prod --log-order=grouped --output-logs=full --log-prefix=none",
 		"ci:test": "CI=\"true\" vitest run --passWithNoTests",
 		"lint": "biome check --max-diagnostics=none",
 		"lint:fix": "biome check --write --max-diagnostics=none",
@@ -40,10 +39,10 @@
 		"types:check": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@okfit/plugin": "^0.5.30",
-		"@savvy-web/bundler": "^2.7.4",
-		"@savvy-web/silk": "^4.5.7",
-		"@vitest-agent/plugin": "^6.0.6"
+		"@effected/plugin": "^0.5.0",
+		"@okfit/plugin": "^0.5.32",
+		"@savvy-web/silk": "^5.0.0",
+		"@vitest-agent/plugin": "^6.0.9"
 	},
 	"engines": {
 		"node": ">=24.11.0"
@@ -51,7 +50,7 @@
 	"devEngines": {
 		"packageManager": {
 			"name": "pnpm",
-			"version": "12.18.0",
+			"version": "12.19.0",
 			"onFail": "download"
 		},
 		"runtime": [
@@ -64,8 +63,7 @@
 	},
 	"publishConfig": {
 		"access": "public",
-		"directory": "dist/dev/pkg",
-		"linkDirectory": true,
+		"directory": "dist/prod/npm/pkg",
 		"targets": {
 			"npm": true
 		}
