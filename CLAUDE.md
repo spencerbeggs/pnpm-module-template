@@ -32,43 +32,43 @@ When starting a new project from this template, follow this lifecycle:
 
 ## Build Pipeline
 
-This project uses
-[@savvy-web/rslib-builder](https://github.com/savvy-web/rslib-builder) to
-produce dual build outputs via [Rslib](https://rslib.rs/):
+This project builds with `effected package build`, the command from
+[`@effected/plugin`](https://github.com/spencerbeggs/effected) (a root
+devDependency, which also ships `effected-mcp`). There is one build target and
+no dev build: workspace links and tests resolve `exports` to `src/` directly.
 
 | Output | Directory | Purpose |
 | ------ | --------- | ------- |
-| Development | `dist/dev/` | Local development with source maps |
-| Production | `dist/npm/` | Published to npm and GitHub Packages |
+| Package | `dist/prod/npm/pkg/` | What is packed and published |
+| API model | `dist/prod/npm/meta/` | API Extractor model and metadata |
+| Verdict | `dist/prod/issues.json` | Build result and diagnostics |
+
+An optional `effected.toml` configures the build; with none, every key takes
+its default. Read `buildOk` in `dist/prod/issues.json` before trusting a build:
+a crashed build's empty buckets look like a clean one. API Extractor findings
+are warnings locally and errors under `CI`.
 
 ### How `private: true` Works
 
 The source `package.json` is marked `"private": true` — **this is intentional
-and correct**. During the build, rslib-builder reads the `publishConfig` field
-and transforms the output `package.json`:
-
-- Sets `"private": false` based on `publishConfig.access`
-- Rewrites `exports` to point at compiled output
-- Strips `devDependencies`, `scripts`, `publishConfig`, and `devEngines`
-
-The `rslib.config.ts` `transform()` callback controls what gets removed. Never
-manually set `"private": false` in the source `package.json`.
+and correct**. The build derives the emitted manifest's `private` from
+`publishConfig.access`, rewrites `exports` to the compiled output, and strips
+`devDependencies`, `scripts` and `publishConfig`. Never manually set
+`"private": false` in the source `package.json`.
 
 ### Publish Targets
 
-The `publishConfig.targets` array defines where packages are published:
-
-- **GitHub Packages** — `https://npm.pkg.github.com/` (from `dist/npm/`)
-- **npm registry** — `https://registry.npmjs.org/` (from `dist/npm/`)
-
-Both targets publish with provenance attestation enabled.
+`publishConfig.targets` decides where the package publishes and under which
+names; each distinct name builds into its own group under `dist/prod/<group>/`.
+This template declares `npm: true`, a single `npm` group. Add `github: true` to
+publish the same bytes to GitHub Packages.
 
 ### Turbo Orchestration
 
 [Turbo](https://turbo.build/) manages build task dependencies and caching:
 
 - `types:check` runs first (no dependencies)
-- `build:dev` and `build:prod` both depend on `types:check`
+- `build:prod` (`effected package build`) depends on `types:check`
 - Cache excludes: `*.md`, `.changeset/**`, `.claude/**`, `.github/**`,
   `.husky/**`, `.vscode/**`
 - Environment pass-through: `GITHUB_ACTIONS`, `CI`
@@ -81,14 +81,13 @@ installed source.
 
 | Package | Purpose | GitHub | Local Source |
 | ------- | ------- | ------ | ------------ |
-| rslib-builder | Build pipeline, dual output, package.json transform | [savvy-web/rslib-builder](https://github.com/savvy-web/rslib-builder) | `node_modules/@savvy-web/rslib-builder/` |
 | commitlint | Conventional commit + DCO enforcement | [savvy-web/commitlint](https://github.com/savvy-web/commitlint) | `node_modules/@savvy-web/commitlint/` |
 | changesets | Versioning, changelogs, release management | [savvy-web/changesets](https://github.com/savvy-web/changesets) | `node_modules/@savvy-web/changesets/` |
 | lint-staged | Pre-commit file linting via Biome | [savvy-web/lint-staged](https://github.com/savvy-web/lint-staged) | `node_modules/@savvy-web/lint-staged/` |
 | vitest | Vitest config factory with project support | [savvy-web/vitest](https://github.com/savvy-web/vitest) | `node_modules/@savvy-web/vitest/` |
 
-TypeScript configuration extends from rslib-builder:
-`@savvy-web/rslib-builder/tsconfig/ecma/lib.json`
+TypeScript configuration extends from the effected kit:
+`@effected/plugin/tsconfig/ecma.json`
 
 ## Commands
 
@@ -109,10 +108,8 @@ pnpm run test:coverage     # Run tests with v8 coverage report
 ### Building
 
 ```bash
-pnpm run build             # Build dev + prod outputs via Turbo
-pnpm run build:dev         # Build development output only
-pnpm run build:prod        # Build production/npm output only
-pnpm run build:inspect     # Inspect production build config (verbose)
+pnpm run build             # Typecheck, then build dist/prod via Turbo
+pnpm run build:prod        # Run effected package build directly (no typecheck gate)
 ```
 
 ### Running a Specific Test
