@@ -6,8 +6,8 @@ importers:
   .:
     configDependencies:
       '@effected/pnpm-plugin-effected':
-        specifier: 0.26.8
-        version: 0.26.8
+        specifier: 0.26.9
+        version: 0.26.9
       '@savvy-web/pnpm-plugin-silk':
         specifier: 0.54.1
         version: 0.54.1
@@ -18,8 +18,8 @@ importers:
 
 packages:
 
-  '@effected/pnpm-plugin-effected@0.26.8':
-    resolution: {integrity: sha512-xKwXaLc+6YU/636zprX7zI6MtzRS8ybCxRrhOWW1Vt1JGvZjHr1JyIgCPZkpnEqPwydRrN34LlA82gMW2cEU2Q==}
+  '@effected/pnpm-plugin-effected@0.26.9':
+    resolution: {integrity: sha512-RQJK1vUYzJa81vLd8G7fPLYK7kDO/NLu4UpfBgTXtJT2xtLuWa6a8EDEGgmJ2GOYjx56jpozrjlohZHDrdJUmw==}
 
   '@pnpm/exe.android-arm64@12.22.0':
     resolution: {integrity: sha512-n0kwk3uOtWGaSMJWUuxG8fLefRonw8jR27dhGzMcDz79Um37QKPLEGZAZF37iASbb2yBBQFl4hue6/SfQnmIdA==}
@@ -113,7 +113,7 @@ packages:
 
 snapshots:
 
-  '@effected/pnpm-plugin-effected@0.26.8': {}
+  '@effected/pnpm-plugin-effected@0.26.9': {}
 
   '@pnpm/exe.android-arm64@12.22.0':
     optional: true
@@ -219,7 +219,7 @@ overrides:
   '@effect/vitest@^4.0.0': 4.1.4
   effect@^4.0.0: 4.1.4
 
-pnpmfileChecksum: sha256-CzC1zDE+B9oUxkHgL5trGcdRm4nQPJauI5DdRl6bIIc=
+pnpmfileChecksum: sha256-iihr0UAsjERvaWhl52q50hICIjBLsn709y4D4h8rS+Q=
 
 importers:
 
