@@ -39,10 +39,10 @@
 		"types:check": "tsc --noEmit"
 	},
 	"devDependencies": {
-		"@effected/plugin": "^0.6.7",
-		"@okfit/plugin": "^0.5.40",
+		"@effected/plugin": "^0.6.8",
+		"@okfit/plugin": "^0.6.0",
 		"@savvy-web/silk": "^5.1.10",
-		"@vitest-agent/plugin": "^6.2.0"
+		"@vitest-agent/plugin": "^6.2.1"
 	},
 	"engines": {
 		"node": ">=24.11.0"
